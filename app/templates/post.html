@@ -1,0 +1,106 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <div class="content-section">
+        <form method="POST" novalidate enctype="multipart/form-data">
+            {{ form.hidden_tag() }} <!-- we add a CSRF token for protection against furgery attacks -->
+            <fieldset class="form-design">
+                <legend class="border-bottom">Create Post</legend>
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                    {% if form.title.errors %}
+                        <br>
+                        {{ form.title(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.title.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <br>
+                        {{ form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.content.label(class="form-control-label") }}
+                    {% if form.content.errors %}
+                        <br>
+                        {{ form.content(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.content.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <br>
+                        {{ form.content(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.location.label(class="form-control-label") }}
+                    {% if form.location.errors %}
+                        <br>
+                        {{ form.location(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <br>
+                        {{ form.location(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="dropdownmenu">
+                    {{ form.space_size.label(class="form-control-label") }}
+                    {% if form.space_size.errors %}
+                        <br>
+                        {{ form.space_size(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.space_size.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+
+                        <button type="button" class="btn btn-light" id="hover-icon">Info</button>
+                        <div class="hover-info-space-size">
+                            <ul class="list-of-space-sizes">
+                                <li>XS - 50m X 70m</li>
+                                <li>S - 150m x 170m</li>
+                                <li> M - 250m x 270m</li>
+                                <li> ML - 350m x 370m</li>
+                                <li> L - 450m x 470m</li>
+                                <li> XL - 550m x 570m +</li>
+                            </ul>
+                        </div>
+                        {{ form.space_size(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <br>
+                <br>
+                <div class="form-group">
+                    {{ form.picture_for_posts.label() }}
+                    {% if form.picture_for_posts.errors %}
+                        <br>
+                        {{ form.picture_for_posts(class="form-control-file is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.picture_for_posts.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <br>
+                        {{ form.picture_for_posts(class="form-control-file") }}
+                    {% endif %}
+
+                </div>
+                <div class="attempt">
+                    <!-- added this above class and the below id to make the elements easier to target with css -->
+                    <p id="signupbutton">{{ form.submit(class="form-control form-control-lg") }}</p></div>
+            </fieldset>
+        </form>
+    </div>
+
+{% endblock %}
