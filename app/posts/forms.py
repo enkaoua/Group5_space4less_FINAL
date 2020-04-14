@@ -7,6 +7,8 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 
 
+
+
 def post_code_validator(form, field):
     if not validation.is_valid_postcode(field.data):
         raise ValidationError('Invalid UK Post Code')
