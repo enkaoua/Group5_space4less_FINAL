@@ -93,18 +93,18 @@ class BaseCase(TestCase):
 
 
 
-    def test_adding_a_post_success(self):
-        with self.client:
-            self.login(self.propertyowner.email, self.propertyowner.password)
-            response = self.client.post(
-                '/post',
-                data=dict(title='post1', content='content', location='location', space_size='M', current_user=current_user),
-                follow_redirects=True
-            )
-            self.assertEqual(response.status_code, 200)
-
-    def booking_is_a_success(self):
-        response = self.client.book(url_for('booking.'))
+    # def test_adding_a_post_success(self):
+    #     with self.client:
+    #         self.login(self.propertyowner.email, self.propertyowner.password)
+    #         response = self.client.post(
+    #             '/post',
+    #             data=dict(title='post1', content='content', location='location', space_size='M', current_user=current_user),
+    #             follow_redirects=True
+    #         )
+    #         self.assertEqual(response.status_code, 200)
+    #
+    # def booking_is_a_success(self):
+    #     response = self.client.book(url_for('booking.'))
 
 
 if __name__ == '__main__':
