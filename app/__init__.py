@@ -1,3 +1,4 @@
+# Contributors: Koether, Aure
 # This module initialises our application, doing all configurations
 # it returns an app instance,
 # and here is also where we create a database instance.
@@ -11,9 +12,9 @@ from flask_mail import Mail
 # from flask_user import UserManager
 
 from app.config import DevConfig
+
 # we will also need to do some initialisation (configuration) to our forms module ??????? where
 # (which is inside app >> main >> forms.py)
-
 
 
 db = SQLAlchemy()
@@ -23,19 +24,22 @@ mail = Mail()
 # we start by creating a database instance which we will use in our models.py for creating the database.
 from app.populate import populate_db
 
+
 # we then initialise the application:
 # config_class ->> under this variable we need to input the DevConfig
 #                  we made in our configuration file.
 def create_app(config_class=DevConfig):
     # we start by creating an instance of an app.
     app = Flask(__name__)
+    # # Modified from: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xi-email-support,
+    # # Date of retrieval: [2020/03/27]
     # these just configure flask mail and ensure it always sends from our new email
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'spaceforlessproject@gmail.com'
     app.config['MAIL_PASSWORD'] = '8538dc77bed892718711652bdbb3a58366effdf84316'
-    # mail = Mail(app)
+
     mail.init_app(app)
 
     # configuring (initialising and stuff):
@@ -45,8 +49,9 @@ def create_app(config_class=DevConfig):
     db.init_app(app)
     # initialising the login function
     login.init_app(app)
-    login.login_view = 'auth.login' # redirecting user to login page if they are trying to access a page they cannot access unless theyre logged in
-    login.login_message_category = 'info' # flash message will be of type 'info'
+    login.login_view = 'auth.login'  # redirecting user to login page if they are trying to access a page they cannot
+                                     # access unless theyre logged in
+    login.login_message_category = 'info'  # flash message will be of type 'info'
 
     # for demonstration purposes:
     # from app.populate import populate_db

@@ -1,4 +1,5 @@
 """Flask config class."""
+# Contributors: Aure, Kowther
 from os.path import dirname, abspath, join
 import os
 

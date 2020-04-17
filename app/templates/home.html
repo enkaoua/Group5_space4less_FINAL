@@ -1,19 +1,29 @@
+<!-- Contributors: Kowther (pagination), Ariel (search form), Aure (Posts) -->
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div>
+
+    <div class="filter-all">
+        <p class="filter" style="font-family: Montserrat, sans-serif;  ">Filter your search!</p>
         <form class="form-inline ml-auto" action="search" method="post">
-            <input class="form-control" type="search" name="location" placeholder="Enter location">
-            <select class="form-control" name="size" id="size">
-                <option value="" selected>Select a size</option>
-                <option value="Extra Small">XS</option>
-                <option value="Small">S</option>
-                <option value="Medium">M</option>
-                <option value="Medium Large">ML</option>
-                <option value="Large">L</option>
-                <option value="Extra Large">XL</option>
-            </select>
-            <input class="form-control" type="submit" placeholder="submit">
+            <div class="filter">
+                <input class="form-control" type="search" name="location" placeholder="Enter location">
+            </div>
+            <div class="filter">
+                <select class="form-control" name="size" id="size">
+                    <option value="" selected>Select a size</option>
+                    <option value="Extra Small">XS</option>
+                    <option value="Small">S</option>
+                    <option value="Medium">M</option>
+                    <option value="Medium Large">ML</option>
+                    <option value="Large">L</option>
+                    <option value="Extra Large">XL</option>
+                </select>
+            </div>
+            <br>
+            <div class="filter">
+                <input class="btn btn-success form-control" type="submit" placeholder="submit">
+            </div>
         </form>
     </div>
 
@@ -44,8 +54,12 @@
                 </div>
             </div>
         </div>
-
-
+        <!-- Modified from: https://github.com/CoreyMSchafer/code_snippets/blob/master/Python/Flask_Blog/09-Pagination/flaskblog/templates/home.html
+           Date of Retrieval: [2020/04/10]-->
+        <!--this section of code enables the search results to be paginated, it ensures that the button with the page number
+        being viewed is filled in (see the different classes btn btn-info mb-4 for when it should be filled in and
+        btn btn-outline-info mb-4 for just a button with an outline) finally as the number of pages increase an else statement
+        ensures that an ellipsis will break up the page numbers-->
     {% endfor %}
     {% for page_num in posts.iter_pages() %}
         {% if page_num %}

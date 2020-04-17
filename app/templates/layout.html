@@ -1,3 +1,6 @@
+<!-- Contributors: Kowther Elmi, Aure Enkaoua
+this is the layout page which all pages extend from which includes the main elements
+for every page such as the navbar and footer-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +24,8 @@
     <!-- Add icon library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
+    {# In each route, we enter the title of that specific page. If there's no title specified,
+    it will take the name space4less. #}
     {% if title %}
         <title> {{ title }} </title>
     {% else %}
@@ -34,7 +37,7 @@
 <body>
 <header>
 
-    <!-- Navbar code from codepen-->
+    <!-- Navbar code modified from: https://codepen.io/jo_Geek/pen/xgbaEr, Date of retrieval: [2020/02/17]-->
     <nav class="nav">
         <!-- allows for clicking the navbar icon when the screen is small-->
         <input type="checkbox" id="nav-check">
@@ -47,7 +50,6 @@
                     style='color: red; font-family: "Mr Dafoe"; font-size: 50px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; '> 4 </span>
                 Less
             </div>
-
         </div>
 
 
@@ -62,14 +64,11 @@
 
         <!-- navbar content on the right -->
         <div class="nav-links">
-
+            {# the navbar links will change depending on who is logged in/if you are logged in #}
             <a href="{{ url_for('main.home_page') }}"> Home/Browse</a>
             {% if current_user.is_authenticated %}
                 {% if current_user.roles == 'property_owner' %}
                     <a href="{{ url_for('posts.post') }}" target="_blank"> Post </a>
-
-                    {#{% else %}
-                        <a href="{{ url_for('main.book') }}" target="_blank"> Book </a>#}
                 {% endif %}
                 <a href="{{ url_for('auth.logout') }}">Logout</a>
                 <a href="{{ url_for('user.profile') }}">My profile</a>
@@ -99,7 +98,7 @@
     {% block content %}{% endblock content %}
 </div>
 
-
+<!--Modified from: https://codepen.io/slstudios/pen/rVYbqM Date of retrieval [2020/04/01] -->
 <footer class="footer-distributed">
 
     <div class="footer-left">
