@@ -9,11 +9,11 @@
     padding: 1%;
 }
 .filter-all{
-    background: #EBDEA8 !important;
+    border: solid black 1px;
+    border-radius: 10px;
     padding: 2%;
 }
 .filter-all > form{
-    background: #EBDEA8 !important;
     padding-top: 0 !important;
 }
 
